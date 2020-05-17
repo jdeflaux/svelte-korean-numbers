@@ -29,7 +29,7 @@ jobs:
     - run: npm run build 
       
     - name: Deploy to Heroku
-    - uses: AkhileshNS/heroku-deploy@v3.0.4
+      uses: AkhileshNS/heroku-deploy@v3.0.4
       with:
         # This will be used for authentication. You can find it in your heroku homepage account settings
         heroku_api_key: ${{ secrets.heroku_api_key }}
