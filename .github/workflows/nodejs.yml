@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [10.x, 12.x]
+        node-version: [12.x]
 
     steps:
     - uses: actions/checkout@v2
@@ -48,4 +48,4 @@ jobs:
         # Type of heroku process (web, worker, etc). This option only makes sense when usedocker enabled
         #docker_heroku_process_type: # optional, default is web
         # Set if your app is located in a subdirectory.
-        appdir: build # optional, default is 
+        appdir: public # optional, default is 
