@@ -23,17 +23,24 @@
 </script>
 
 <main class="container">
-  <h1 class="mt-5">Learn Korean Numbers !</h1>
+  <h1 class="mt-2">Learn Korean Numbers !</h1>
 
-  <div class="form-inline mb-3 mt-3">
-    <label for="max" class="mr-2">max</label>
-    <input type="number" class="form-control mr-2" id="max" placeholder="max" bind:value={max}/>
+  <div class="form-row mb-2 justify-content-start">
+    <div class="col mb-2 col-md-2">
+      <label for="max" class="mr-2">max</label>
+      <input type="number" class="form-control mr-2" id="max" placeholder="max" bind:value={max}/>
+    </div>
 
-    <label for="max" class="mr-2">number</label>
-    <input type="number" class="form-control mr-2" id="max" placeholder="number" bind:value={number}/>
+    <div class="col mb-2 col-md-2">
+      <label for="number" class="mr-2">number</label>
+      <input type="number" class="form-control mr-2" id="number" placeholder="number" bind:value={number}/>
+    </div>
 
-    <button class="btn btn-primary" on:click={random}>Random Number</button>
+    <div class="col align-self-end mb-2">
+      <button class="btn btn-primary" on:click={random}>Random Number</button>
+    </div>
   </div>
+
   
   <Number number={id} native={native} sino={sino}/>
 </main>
