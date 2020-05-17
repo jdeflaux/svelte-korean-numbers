@@ -3,6 +3,7 @@ import App from './App.svelte';
 const app = new App({
 	target: document.body,
 	props: {
+		max: 100,
 		numbers: [
 			{ id:0, 'sino': ' 영/공', native: ' –'},
 			{ id: 1, 'sino': ' 일', native: ' 하나'},
@@ -35,6 +36,7 @@ const app = new App({
 			{ id: 28, 'sino': ' 이십 팔', native: ' 스물 여덟'},
 			{ id: 29, 'sino': ' 이십 구', native: ' 스물 아홉'},
 			{ id: 30, 'sino': ' 삼십', native: ' 서른'},
+			{ id: 31, 'sino': ' 삼십 일', native: '서른 하나'},
 			{ id: 40, 'sino': ' 사십', native: ' 마흔'},
 			{ id: 50, 'sino': ' 오십', native: ' 쉰'},
 			{ id: 60, 'sino': ' 육십', native: ' 예순'},

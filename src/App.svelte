@@ -1,10 +1,10 @@
 <script>
   import Number from "./Number.svelte";
   export let numbers;
-  export let max = 100;
+  export let max;
   let number;
 
-  $: referenceNumber = number ? numbers.find(x => x && x.id === number) || {} : {};
+  $: referenceNumber = numbers.find(x => x && x.id === number) || {};
   $: id = referenceNumber.id;
   $: native = referenceNumber.native;
   $: sino = referenceNumber.sino;
@@ -15,7 +15,7 @@
 
   function random() {
     const n = getRandomInt(max);
-    number = n;
+    number = n > 31 ? Math.ceil(n / 10) * 10 : n;
   }
 
   random();
@@ -30,7 +30,7 @@
     <input type="number" class="form-control mr-2" id="max" placeholder="max" bind:value={max}/>
 
     <label for="max" class="mr-2">number</label>
-    <input type="number" class="form-control mr-2" id="max" placeholder="max" bind:value={number}/>
+    <input type="number" class="form-control mr-2" id="max" placeholder="number" bind:value={number}/>
 
     <button class="btn btn-primary" on:click={random}>Random Number</button>
   </div>
