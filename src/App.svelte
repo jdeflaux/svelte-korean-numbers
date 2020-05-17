@@ -4,18 +4,22 @@
   export let max = 100;
   let number;
 
-  let unit;
-  let tens;
+  $: referenceNumber = number ? numbers.find(x => x && x.id === number) || {} : {};
+  $: id = referenceNumber.id;
+  $: native = referenceNumber.native;
+  $: sino = referenceNumber.sino;
 
   function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
   }
 
-  function onClick() {
+  function random() {
     const n = getRandomInt(max);
-    number = numbers[n % numbers.length];
+    number = n;
   }
-  onClick();
+
+  random();
+
 </script>
 
 <main class="container">
@@ -23,9 +27,13 @@
 
   <div class="form-inline mb-3 mt-3">
     <label for="max" class="mr-2">max</label>
-    <input type="text" class="form-control mr-2" id="max" placeholder="max" bind:value={max}/>
-    <button class="btn btn-primary" on:click={onClick}>Next Number</button>
+    <input type="number" class="form-control mr-2" id="max" placeholder="max" bind:value={max}/>
+
+    <label for="max" class="mr-2">number</label>
+    <input type="number" class="form-control mr-2" id="max" placeholder="max" bind:value={number}/>
+
+    <button class="btn btn-primary" on:click={random}>Random Number</button>
   </div>
   
-  <Number {number} />
+  <Number number={id} native={native} sino={sino}/>
 </main>

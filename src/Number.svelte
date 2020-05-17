@@ -1,5 +1,7 @@
 <script>
 	export let number;
+	export let native;
+	export let sino;
 </script>
 
 <style>
@@ -12,19 +14,19 @@
   }
 </style>
 
-{#if number && number.id !== undefined}
+{#if number !== undefined}
 <div class="card">
   <div class="card-body text-center">
-    <h1>{number.id}</h1>
+    <h1>{number}</h1>
 
     <div class="row">
       <span class="col-sm reveal text-right">
-          <h2 >{number.sino}</h2>
+          <h2 >{sino}</h2>
           <span class="badge badge-info">sino</span>
       </span>
 
       <span class="col-sm reveal text-left">
-          <h2 >{number.native}</h2>
+          <h2 >{native}</h2>
           <span class="badge badge-info">native</span>
       </span>
     </div>
