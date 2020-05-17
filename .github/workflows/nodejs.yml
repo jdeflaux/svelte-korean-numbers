@@ -44,8 +44,8 @@ jobs:
         # Set this to true if you don't want to use --force when switching branches
         #dontuseforce: # optional
         # Will deploy using Dockerfile in project root.
-        #usedocker: # optional
+        usedocker: true # optional
         # Type of heroku process (web, worker, etc). This option only makes sense when usedocker enabled
-        #docker_heroku_process_type: # optional, default is web
+        # docker_heroku_process_type: # optional, default is web
         # Set if your app is located in a subdirectory.
-        appdir: public # optional, default is 
+        # appdir: public # optional, default is 
