@@ -18,6 +18,14 @@
     number = n > 31 ? Math.ceil(n / 10) * 10 : n;
   }
 
+  function add() {
+    number += 1;
+  }
+
+  function minus() {
+    number -= 1;
+  }
+
   random();
 
 </script>
@@ -34,6 +42,14 @@
     <div class="col mb-2 col-md-2">
       <label for="number" class="mr-2">number</label>
       <input type="number" class="form-control mr-2" id="number" placeholder="number" bind:value={number}/>
+    </div>
+
+
+    <div class="col align-self-end col-auto mb-2">
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-secondary" on:click={minus}>-1</button>
+        <button type="button" class="btn btn-secondary"on:click={add}>+1</button>
+      </div>
     </div>
 
     <div class="col align-self-end mb-2">
