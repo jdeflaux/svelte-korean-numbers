@@ -1,7 +1,7 @@
 <script>
   import Number from "./Number.svelte";
-  import Toolbar from "./Toolbar.svelte";
-  import ToolbarDate from "./ToolbarDate.svelte";
+  import NumberToolbar from "./NumberToolbar.svelte";
+  import DateToolbar from "./DateToolbar.svelte";
   import Date from "./Date.svelte";
 
   export let numbers;
@@ -10,14 +10,7 @@
   export let max;
 
   let date = null;
-
   let number = null;
-
-  $: referenceNumber = numbers.find(x => x && x.id === number) || {};
-  $: id = referenceNumber.id;
-  $: native = referenceNumber.native;
-  $: sino = referenceNumber.sino;
-
 
   function onNumberChange(e) {
     number = e.detail;
@@ -34,10 +27,10 @@
 <main class="container">
   <h1 class="mt-2">Learn Korean Numbers !</h1>
 
-  <Toolbar bind:max={max} bind:number={number} on:change={onNumberChange} />
-  <ToolbarDate on:dateChange={onDateChange} />
+  <NumberToolbar bind:max={max} bind:number={number} on:change={onNumberChange} />
+  <DateToolbar on:dateChange={onDateChange} />
 
-  <Number number={id} native={native} sino={sino}/>
+  <Number number={number} numbers={numbers} />
 
-  <Date bind:date={date} bind:numbers={numbers} bind:monthList={monthList} bind:weekdays={weekdays} />
+  <Date date={date} numbers={numbers} monthList={monthList} weekdays={weekdays} />
 </main>

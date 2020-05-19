@@ -1,7 +1,11 @@
 <script>
   export let number;
-  export let native;
-  export let sino;
+  export let numbers;
+
+  $: referenceNumber = numbers.find(x => x && x.id === number) || {};
+  $: id = referenceNumber.id;
+  $: native = referenceNumber.native;
+  $: sino = referenceNumber.sino;
 </script>
 
 <style>
@@ -15,7 +19,7 @@
   }
 </style>
 
-{#if number !== undefined}
+{#if number}
   <div class="card reveal-container">
     <div class="card-body text-center">
       <h1>{number}</h1>
