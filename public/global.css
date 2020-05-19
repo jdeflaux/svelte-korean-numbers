@@ -1,3 +1,15 @@
 body {
-	background-color: #DADADA;
+    background-color: #DADADA;
+}
+
+.card {
+    min-height: 200px;
+}
+
+.reveal-container .reveal {
+    visibility: hidden;
+}
+
+.reveal-container:hover .reveal {
+    visibility: visible;
 }

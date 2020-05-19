@@ -5,18 +5,6 @@
 </script>
 
 <style>
-  .card {
-    min-height: 200px;
-  }
-
-  .card .reveal {
-    visibility: hidden;
-  }
-
-  .card:hover .reveal {
-    visibility: visible;
-  }
-
   @media (min-width: 768px) {
     .sino {
       text-align: right;
@@ -28,7 +16,7 @@
 </style>
 
 {#if number !== undefined}
-  <div class="card">
+  <div class="card reveal-container">
     <div class="card-body text-center">
       <h1>{number}</h1>
 

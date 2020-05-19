@@ -1,62 +1,43 @@
 <script>
   import Number from "./Number.svelte";
+  import Toolbar from "./Toolbar.svelte";
+  import ToolbarDate from "./ToolbarDate.svelte";
+  import Date from "./Date.svelte";
+
   export let numbers;
+  export let monthList;
+  export let weekdays;
   export let max;
-  let number;
+
+  let date = null;
+
+  let number = null;
 
   $: referenceNumber = numbers.find(x => x && x.id === number) || {};
   $: id = referenceNumber.id;
   $: native = referenceNumber.native;
   $: sino = referenceNumber.sino;
 
-  function getRandomInt(max) {
-    return Math.floor(Math.random() * Math.floor(max));
+
+  function onNumberChange(e) {
+    number = e.detail;
+    date = null;
   }
 
-  function random() {
-    const n = getRandomInt(max);
-    number = n > 31 ? Math.ceil(n / 10) * 10 : n;
+  function onDateChange(e) {
+    date = e.detail;
+    number = null
   }
-
-  function add() {
-    number += 1;
-  }
-
-  function minus() {
-    number -= 1;
-  }
-
-  random();
 
 </script>
 
 <main class="container">
   <h1 class="mt-2">Learn Korean Numbers !</h1>
 
-  <div class="form-row mb-2 justify-content-start">
-    <div class="col mb-2 col-md-2">
-      <label for="max" class="mr-2">max</label>
-      <input type="number" class="form-control mr-2" id="max" placeholder="max" bind:value={max}/>
-    </div>
+  <Toolbar bind:max={max} bind:number={number} on:change={onNumberChange} />
+  <ToolbarDate on:dateChange={onDateChange} />
 
-    <div class="col mb-2 col-md-2">
-      <label for="number" class="mr-2">number</label>
-      <input type="number" class="form-control mr-2" id="number" placeholder="number" bind:value={number}/>
-    </div>
-
-
-    <div class="col align-self-end col-auto mb-2">
-      <div class="btn-group" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-secondary" on:click={minus}>-1</button>
-        <button type="button" class="btn btn-secondary"on:click={add}>+1</button>
-      </div>
-    </div>
-
-    <div class="col align-self-end mb-2">
-      <button class="btn btn-primary" on:click={random}>Random Number</button>
-    </div>
-  </div>
-
-  
   <Number number={id} native={native} sino={sino}/>
+
+  <Date bind:date={date} bind:numbers={numbers} bind:monthList={monthList} bind:weekdays={weekdays} />
 </main>
