@@ -6,10 +6,10 @@
   export let monthList;
   export let weekdays;
 
-  $: dateString = dayjs(date).format('ddd D MMM');
+  $: dateString = dayjs(date).format('ddd MMM D');
   $: monthString = date ? monthList[date.getMonth()] : ''
   $: dayString = date ? numbers[date.getDate()].sino + '일' : ''
-  $: weekdayString = date ? weekdays[date.getDay()-1] : ''
+  $: weekdayString = date ? weekdays[date.getDay()] : ''
 </script>
 
 <style>
@@ -22,7 +22,7 @@
 
       <div class="row">
         <span class="col">
-          <h2 class="reveal">{weekdayString} {monthString} {dayString}이에요</h2>
+          <h2 class="reveal">{weekdayString} {monthString} {dayString}</h2>
         </span>
       </div>
 
