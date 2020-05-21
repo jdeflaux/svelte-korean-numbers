@@ -77,7 +77,7 @@
         {#each items as item}
           <div class="col text-nowrap text-center">
             <div>{item.uk}</div>
-            <div>{item.kr}</div>
+            <h3>{item.kr}</h3>
           </div>
         {/each}
       </div>
