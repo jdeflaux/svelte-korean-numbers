@@ -20,21 +20,25 @@
 
   function onDateChange(e) {
     date = e.detail;
-    number = null
+    number = null;
   }
 
+  function reset() {
+    date = null;
+    number = null;
+  }
 </script>
 
 <main class="container">
   <h1 class="mt-2">Learn Korean Numbers !</h1>
 
-  <NumberToolbar bind:max={max} bind:number={number} on:change={onNumberChange} />
+  <NumberToolbar bind:max bind:number on:change={onNumberChange} />
   <DateToolbar on:dateChange={onDateChange} />
 
-  <ListAll numbers={numbers} monthList={monthList} weekdays={weekdays} />
+  <ListAll {numbers} {monthList} {weekdays} hidden={date || number} on:change={reset}/>
 
-  <Number number={number} numbers={numbers} />
+  <Number {number} {numbers} />
 
-  <Date date={date} numbers={numbers} monthList={monthList} weekdays={weekdays} />
+  <Date {date} {numbers} {monthList} {weekdays} />
 
 </main>

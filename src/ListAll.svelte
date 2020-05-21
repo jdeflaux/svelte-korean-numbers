@@ -1,7 +1,11 @@
 <script>
+  import { createEventDispatcher } from "svelte";
+  const dispatch = createEventDispatcher();
+
   export let numbers;
   export let weekdays;
   export let monthList;
+  export let hidden;
   let items = [];
 
   var month = new Array();
@@ -32,12 +36,14 @@
       uk: item.id,
       kr: item.sino
     }));
+    dispatch('change')
   }
   function toggleNumbersNative() {
     items = numbers.map((item) => ({
       uk: item.id,
       kr: item.native
     }));
+    dispatch('change')
   }
   function toggleWeekdays() {
     items = weekdays.map((item, index) => ({
@@ -47,12 +53,14 @@
     // starts on monday :P
     items.push(items[0])
     items.shift();
+    dispatch('change')
   }
   function toggleMonthList() {
     items = monthList.map((item, index) => ({
       uk: month[index],
       kr: item
     }));
+    dispatch('change')
   }
 </script>
 
@@ -63,7 +71,7 @@
   <button class="btn btn-link" on:click={toggleWeekdays}>week days</button>
   <button class="btn btn-link" on:click={toggleMonthList}>month</button>
 
-  {#if items.length > 0}
+  {#if items.length > 0 && !hidden}
     <div class="card container">
       <div class="row">
         {#each items as item}
