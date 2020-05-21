@@ -3,6 +3,7 @@
   import NumberToolbar from "./NumberToolbar.svelte";
   import DateToolbar from "./DateToolbar.svelte";
   import Date from "./Date.svelte";
+  import ListAll from "./ListAll.svelte";
 
   export let numbers;
   export let monthList;
@@ -30,7 +31,10 @@
   <NumberToolbar bind:max={max} bind:number={number} on:change={onNumberChange} />
   <DateToolbar on:dateChange={onDateChange} />
 
+  <ListAll numbers={numbers} monthList={monthList} weekdays={weekdays} />
+
   <Number number={number} numbers={numbers} />
 
   <Date date={date} numbers={numbers} monthList={monthList} weekdays={weekdays} />
+
 </main>
