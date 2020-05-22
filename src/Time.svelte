@@ -1,7 +1,7 @@
 <script>
   import dayjs from "dayjs";
   import { time } from "./stores";
-  import { NUMBERS } from "./constants";
+  import { HOURS_KR, NUMBERS } from "./constants";
   import randomInt from './random/randomInt';
 
   let englishTime;
@@ -10,7 +10,7 @@
   time.subscribe(newDate => {
     englishTime = dayjs(newDate).format("hh:mm a");
 
-    const hours = newDate ? NUMBERS[newDate.getHours() % 12].native.replace(' ', '') + "시" : "";
+    const hours = newDate ? HOURS_KR[newDate.getHours() % 12] : "";
     let minutes = newDate ? NUMBERS[newDate.getMinutes()].sino.replace(' ', '') + "분" : "";
 
     if(newDate && newDate.getMinutes() === 30) {

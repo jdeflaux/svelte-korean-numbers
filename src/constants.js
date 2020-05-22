@@ -151,3 +151,18 @@ export const WEEKDAY_EN = [
   "Friday",
   "Saturday"
 ]
+
+export const HOURS_KR = [
+  '열두 시',
+  '한 시',
+  '두 시',
+  '세 시',
+  '네 시',
+  '다셋 시',
+  '여섯 시',
+  '일곱 시',
+  '여덟 시',
+  '아홉 시',
+  '열 시',
+  '열한 시'
+]
