@@ -17,7 +17,7 @@
       minutes = '반'
     }
 
-    const ampm = hours >= 12 ? '오후' : '오전';
+    const ampm = newDate && newDate.getHours(0) >= 12 ? '오후' : '오전';
 
     koreanTime = `${ampm} ${hours} ${minutes}`;
   });
