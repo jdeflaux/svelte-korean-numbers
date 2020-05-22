@@ -2,21 +2,24 @@
   import dayjs from "dayjs";
   import { time } from "./stores";
   import { NUMBERS } from "./constants";
+  import randomInt from './random/randomInt';
 
   let englishTime;
   let koreanTime;
 
   time.subscribe(newDate => {
-    englishTime = dayjs(newDate).format("HH:mm");
+    englishTime = dayjs(newDate).format("hh:mm a");
 
-    const hours = newDate ? NUMBERS[newDate.getHours()].native.replace(' ', '') + "시" : "";
+    const hours = newDate ? NUMBERS[newDate.getHours() % 12].native.replace(' ', '') + "시" : "";
     let minutes = newDate ? NUMBERS[newDate.getMinutes()].sino.replace(' ', '') + "분" : "";
 
-    if(newDate.getMinutes() === 30) {
+    if(newDate && newDate.getMinutes() === 30) {
       minutes = '반'
     }
 
-    koreanTime = `${hours} ${minutes}`;
+    const ampm = hours >= 12 ? '오후' : '오전';
+
+    koreanTime = `${ampm} ${hours} ${minutes}`;
   });
 </script>
 

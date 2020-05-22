@@ -10,7 +10,7 @@
 
   const onRandomTime = () => {
     const random = new Date();
-    random.setHours(randomInt(12));
+    random.setHours(randomInt(24));
     random.setMinutes(randomInt(60));
     time.set(random);
   };
