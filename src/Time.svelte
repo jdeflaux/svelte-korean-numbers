@@ -10,11 +10,7 @@
     englishTime = dayjs(newDate).format("HH:mm");
 
     const hours = newDate ? NUMBERS[newDate.getHours()].native + " 시" : "";
-    const minutes = newDate
-      ? (NUMBERS[newDate.getMinutes()]
-          ? NUMBERS[newDate.getMinutes()].sino
-          : "?") + " 분"
-      : "";
+    const minutes = newDate ? NUMBERS[newDate.getMinutes()].sino + " 분" : "";
 
     koreanTime = `${hours} ${minutes}`;
   });

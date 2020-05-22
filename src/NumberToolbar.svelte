@@ -14,7 +14,6 @@
 
   const onRandom = () => {
     let n = randomInt(max);
-    n = n > 31 ? Math.ceil(n / 10) * 10 : n;
     number.update(() => n);
   };
 </script>
