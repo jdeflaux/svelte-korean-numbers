@@ -1,28 +1,33 @@
 <script>
-  import dayjs from 'dayjs';
-  export let date;
+  import dayjs from "dayjs";
+  import { time } from "./stores";
+  import { NUMBERS } from "./constants";
 
-  export let numbers;
-  export let monthList;
-  export let weekdays;
+  let englishTime;
+  let koreanTime;
 
-  $: dateString = dayjs(date).format('ddd MMM D');
-  $: monthString = date ? monthList[date.getMonth()] : ''
-  $: dayString = date ? numbers[date.getDate()].sino + '일' : ''
-  $: weekdayString = date ? weekdays[date.getDay()] : ''
+  time.subscribe(newDate => {
+    englishTime = dayjs(newDate).format("HH:mm");
+
+    const hours = newDate ? NUMBERS[newDate.getHours()].native + " 시" : "";
+    const minutes = newDate
+      ? (NUMBERS[newDate.getMinutes()]
+          ? NUMBERS[newDate.getMinutes()].sino
+          : "?") + " 분"
+      : "";
+
+    koreanTime = `${hours} ${minutes}`;
+  });
 </script>
 
-<style>
-</style>
-
-{#if date}
+{#if $time}
   <div class="card reveal-container">
     <div class="card-body text-center">
-      <h1>{dateString}</h1>
+      <h1>{englishTime}</h1>
 
       <div class="row">
         <span class="col">
-          <h2 class="reveal">{weekdayString} {monthString} {dayString}</h2>
+          <h2 class="reveal">{koreanTime}</h2>
         </span>
       </div>
 

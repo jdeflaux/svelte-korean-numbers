@@ -3,6 +3,7 @@
   import NumberToolbar from "./NumberToolbar.svelte";
   import DateToolbar from "./DateToolbar.svelte";
   import Date from "./Date.svelte";
+  import Time from "./Time.svelte";
   import ListAll from "./ListAll.svelte";
 
   import { number, date, time } from "./stores";
@@ -42,5 +43,9 @@
 
   {#if showDate}
     <Date />
+  {/if}
+
+  {#if showTime}
+    <Time />
   {/if}
 </main>

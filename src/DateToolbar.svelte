@@ -17,7 +17,7 @@
 </script>
 
 <div class="form-row mb-2 justify-content-start">
-  <div class="col align-self-end mb-2 mt-3">
+  <div class="col-2 align-self-end mb-2 mt-3">
     <button class="btn btn-primary" on:click={onRandom}>Random Date</button>
   </div>
   <div class="col align-self-end mb-2 mt-3">
