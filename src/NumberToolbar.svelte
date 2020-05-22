@@ -1,30 +1,21 @@
 <script>
+  import randomInt from './random/randomInt';
+  import { number } from './stores';
+
   export let max;
-  export let number;
-
-  import { createEventDispatcher } from "svelte";
-  const dispatch = createEventDispatcher();
-
-  function getRandomInt(max) {
-    return Math.floor(Math.random() * Math.floor(max));
-  }
-
-  const emitValue = value => {
-    dispatch("change", value);
-  };
 
   const onMinus = () => {
-    emitValue(number - 1);
+    number.update(n => n - 1);
   };
 
   const onAdd = () => {
-    emitValue(number + 1);
+    number.update(n => n + 1);
   };
 
   const onRandom = () => {
-    let n = getRandomInt(max);
+    let n = randomInt(max);
     n = n > 31 ? Math.ceil(n / 10) * 10 : n;
-    emitValue(n);
+    number.update(() => n);
   };
 </script>
 
@@ -46,7 +37,7 @@
       class="form-control mr-2"
       id="number"
       placeholder="number"
-      bind:value={number} />
+      value={$number} />
   </div>
 
   <div class="col align-self-end col-auto mb-2">

@@ -5,40 +5,42 @@
   import Date from "./Date.svelte";
   import ListAll from "./ListAll.svelte";
 
-  export let numbers;
-  export let monthList;
-  export let weekdays;
+  import { number, date, time } from "./stores";
+
   export let max;
 
-  let date = null;
-  let number = null;
-
-  function onNumberChange(e) {
-    number = e.detail;
-    date = null;
-  }
-
-  function onDateChange(e) {
-    date = e.detail;
-    number = null;
-  }
+  let showNumber;
+  let showDate;
+  let showTime;
+  let showList;
 
   function reset() {
-    date = null;
-    number = null;
+    showNumber= false;
+    showDate = false;
+    showTime = false;
+    showList = false;
   }
+
+  number.subscribe(() => { reset(); showNumber = true });
+  date.subscribe(() => { reset(); showDate = true });
+  time.subscribe(() => { reset(); showTime = true });
+  const onShowList = () => {reset(); showList = true }
+
 </script>
 
 <main class="container">
   <h1 class="mt-2">Learn Korean Numbers !</h1>
 
-  <NumberToolbar bind:max bind:number on:change={onNumberChange} />
-  <DateToolbar on:dateChange={onDateChange} />
+  <NumberToolbar bind:max />
+  <DateToolbar />
 
-  <ListAll {numbers} {monthList} {weekdays} hidden={date || number} on:change={reset}/>
+  <ListAll hidden={!showList} on:change={onShowList} />
 
-  <Number {number} {numbers} />
+  {#if showNumber}
+    <Number />
+  {/if}
 
-  <Date {date} {numbers} {monthList} {weekdays} />
-
+  {#if showDate}
+    <Date />
+  {/if}
 </main>

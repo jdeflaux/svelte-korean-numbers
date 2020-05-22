@@ -1,11 +1,17 @@
 <script>
-  export let number;
-  export let numbers;
+  import { number } from "./stores";
+  import { NUMBERS } from "./constants";
 
-  $: referenceNumber = numbers.find(x => x && x.id === number) || {};
-  $: id = referenceNumber.id;
-  $: native = referenceNumber.native;
-  $: sino = referenceNumber.sino;
+  let id;
+  let native;
+  let sino;
+
+  number.subscribe((value) => {
+    let referenceNumber = NUMBERS.find(x => x && x.id === value) || {};
+    id = referenceNumber.id;
+    native = referenceNumber.native;
+    sino = referenceNumber.sino;
+  });
 </script>
 
 <style>
@@ -19,10 +25,10 @@
   }
 </style>
 
-{#if number}
+{#if id}
   <div class="card reveal-container">
     <div class="card-body text-center">
-      <h1>{number}</h1>
+      <h1>{id}</h1>
 
       <div class="row">
 

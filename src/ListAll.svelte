@@ -2,52 +2,28 @@
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
 
-  export let numbers;
-  export let weekdays;
-  export let monthList;
+  import { NUMBERS, MONTH_KR, WEEKDAY_KR, MONTH_EN, WEEKDAY_EN } from "./constants";
+
   export let hidden;
   let items = [];
 
-  var month = new Array();
-  month[0] = "January";
-  month[1] = "February";
-  month[2] = "March";
-  month[3] = "April";
-  month[4] = "May";
-  month[5] = "June";
-  month[6] = "July";
-  month[7] = "August";
-  month[8] = "September";
-  month[9] = "October";
-  month[10] = "November";
-  month[11] = "December";
-
-  var weekday = new Array(7);
-  weekday[0] = "Sunday";
-  weekday[1] = "Monday";
-  weekday[2] = "Tuesday";
-  weekday[3] = "Wednesday";
-  weekday[4] = "Thursday";
-  weekday[5] = "Friday";
-  weekday[6] = "Saturday";
-
   function toggleNumbersSino() {
-    items = numbers.map((item) => ({
-      uk: item.id,
+    items = NUMBERS.map((item) => ({
+      en: item.id,
       kr: item.sino
     }));
     dispatch('change')
   }
   function toggleNumbersNative() {
-    items = numbers.map((item) => ({
-      uk: item.id,
+    items = NUMBERS.map((item) => ({
+      en: item.id,
       kr: item.native
     }));
     dispatch('change')
   }
   function toggleWeekdays() {
-    items = weekdays.map((item, index) => ({
-      uk: weekday[index],
+    items = WEEKDAY_KR.map((item, index) => ({
+      en: WEEKDAY_EN[index],
       kr: item
     }));
     // starts on monday :P
@@ -56,8 +32,8 @@
     dispatch('change')
   }
   function toggleMonthList() {
-    items = monthList.map((item, index) => ({
-      uk: month[index],
+    items = MONTH_KR.map((item, index) => ({
+      en: MONTH_EN[index],
       kr: item
     }));
     dispatch('change')
@@ -76,7 +52,7 @@
       <div class="row">
         {#each items as item}
           <div class="col text-nowrap text-center">
-            <div>{item.uk}</div>
+            <div>{item.en}</div>
             <h3>{item.kr}</h3>
           </div>
         {/each}
