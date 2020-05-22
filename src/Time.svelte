@@ -9,8 +9,12 @@
   time.subscribe(newDate => {
     englishTime = dayjs(newDate).format("HH:mm");
 
-    const hours = newDate ? NUMBERS[newDate.getHours()].native + " 시" : "";
-    const minutes = newDate ? NUMBERS[newDate.getMinutes()].sino + " 분" : "";
+    const hours = newDate ? NUMBERS[newDate.getHours()].native.replace(' ', '') + "시" : "";
+    let minutes = newDate ? NUMBERS[newDate.getMinutes()].sino.replace(' ', '') + "분" : "";
+
+    if(newDate.getMinutes() === 30) {
+      minutes = '반'
+    }
 
     koreanTime = `${hours} ${minutes}`;
   });
