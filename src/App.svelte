@@ -9,6 +9,7 @@
   import { number, date, time } from "./stores";
 
   export let max;
+  let revealKorean = true;
 
   let showNumber;
   let showDate;
@@ -33,19 +34,19 @@
   <h1 class="mt-2">Learn Korean Numbers !</h1>
 
   <NumberToolbar bind:max />
-  <DateToolbar />
+  <DateToolbar bind:revealKorean/>
 
   <ListAll hidden={!showList} on:change={onShowList} />
 
   {#if showNumber}
-    <Number />
+    <Number {revealKorean}/>
   {/if}
 
   {#if showDate}
-    <Date />
+    <Date {revealKorean}/>
   {/if}
 
   {#if showTime}
-    <Time />
+    <Time {revealKorean}/>
   {/if}
 </main>

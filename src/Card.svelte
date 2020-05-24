@@ -1,3 +1,7 @@
+<script>
+  export let revealKorean = true;
+</script>
+
 <style>
   .card {
     min-height: 200px;
@@ -16,19 +20,32 @@
   <div class="card-body text-center">
 
     <h1>
-      <slot name="en" />
+      {#if revealKorean}
+        <slot name="en" />
+      {/if}
+      {#if !revealKorean}
+        <slot name="kr" />
+        <slot name="reveal"></slot>
+      {/if}
     </h1>
 
     <div class="row reveal">
       <span class="col">
         <h2>
+        {#if revealKorean}
           <slot name="kr" />
+        {/if}
+        {#if !revealKorean}
+          <slot name="en" />
+        {/if}
         </h2>
       </span>
     </div>
 
     <div class="reveal">
-      <slot name="reveal"></slot>
+      {#if revealKorean}
+        <slot name="reveal"></slot>
+      {/if}
     </div>
 
     <slot></slot>

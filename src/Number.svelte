@@ -3,6 +3,8 @@
   import { NUMBERS } from "./constants";
   import Card from "./Card.svelte";
 
+  export let revealKorean;
+
   let id;
   let native;
   let sino;
@@ -27,7 +29,7 @@
 </style>
 
 {#if id}
-  <Card>
+  <Card {revealKorean}>
     <span slot="en">{id}</span>
     <span class="row" slot="reveal">
       <span class="col-sm sino mb-3">

@@ -5,6 +5,8 @@
   import { HOURS_KR, NUMBERS } from "./constants";
   import randomInt from "./random/randomInt";
 
+  export let revealKorean;
+
   let englishTime;
   let koreanTime;
 
@@ -27,7 +29,7 @@
 </script>
 
 {#if $time}
-  <Card>
+  <Card {revealKorean}>
     <span slot="en">{englishTime}</span>
     <span slot="kr">{koreanTime}</span>
   </Card>

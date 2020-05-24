@@ -4,6 +4,8 @@
   import { date } from "./stores";
   import { NUMBERS, MONTH_KR, WEEKDAY_KR } from "./constants";
 
+  export let revealKorean;
+
   let englishDate;
   let koreanDate;
 
@@ -19,7 +21,7 @@
 </script>
 
 {#if $date}
-  <Card>
+  <Card {revealKorean}>
     <span slot="en">{englishDate}</span>
     <span slot="kr">{koreanDate}</span>
   </Card>
