@@ -36,7 +36,7 @@
       class="form-control mr-2"
       id="number"
       placeholder="number"
-      value={$number} />
+      bind:value={$number} />
   </div>
 
   <div class="col align-self-end col-auto mb-2">
