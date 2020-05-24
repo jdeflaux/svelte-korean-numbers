@@ -1,6 +1,7 @@
 <script>
   import { number } from "./stores";
   import { NUMBERS } from "./constants";
+  import Card from "./Card.svelte";
 
   let id;
   let native;
@@ -26,22 +27,17 @@
 </style>
 
 {#if id}
-  <div class="card reveal-container">
-    <div class="card-body text-center">
-      <h1>{id}</h1>
+  <Card>
+    <span slot="en">{id}</span>
+    <span class="row" slot="reveal">
+      <span class="col-sm sino mb-3">
+        <h2>{sino}</h2>
+        <span class="badge badge-info">sino</span>
+      </span>
 
-      <div class="row">
-
-        <span class="col-sm reveal sino mb-3">
-          <h2>{sino}</h2>
-          <span class="badge badge-info">sino</span>
-        </span>
-
-        <span class="col-sm reveal native">
-          <h2>{native}</h2>
-          <span class="badge badge-info">native</span>
-        </span>
-      </div>
-    </div>
-  </div>
+      <span class="col-sm native">
+        <h2>{native}</h2>
+        <span class="badge badge-info">native</span>
+      </span>
+  </Card>
 {/if}

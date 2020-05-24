@@ -1,25 +1,29 @@
 <script>
   import { createEventDispatcher } from "svelte";
+  import Card from "./Card.svelte";
+
   const dispatch = createEventDispatcher();
 
-  import { NUMBERS, MONTH_KR, WEEKDAY_KR, MONTH_EN, WEEKDAY_EN } from "./constants";
+  import {
+    NUMBERS,
+    MONTH_KR,
+    WEEKDAY_KR,
+    MONTH_EN,
+    WEEKDAY_EN
+  } from "./constants";
 
   export let hidden;
   let items = [];
 
-  function toggleNumbersSino() {
-    items = NUMBERS.map((item) => ({
-      en: item.id,
-      kr: item.sino
+  const displayedNumbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+
+  function toggleNumbers() {
+    items = displayedNumbers.map(n => ({
+      en: NUMBERS[n].id,
+      sino: NUMBERS[n].sino,
+      native: NUMBERS[n].native
     }));
-    dispatch('change')
-  }
-  function toggleNumbersNative() {
-    items = NUMBERS.map((item) => ({
-      en: item.id,
-      kr: item.native
-    }));
-    dispatch('change')
+    dispatch("change");
   }
   function toggleWeekdays() {
     items = WEEKDAY_KR.map((item, index) => ({
@@ -27,36 +31,46 @@
       kr: item
     }));
     // starts on monday :P
-    items.push(items[0])
+    items.push(items[0]);
     items.shift();
-    dispatch('change')
+    dispatch("change");
   }
   function toggleMonthList() {
     items = MONTH_KR.map((item, index) => ({
       en: MONTH_EN[index],
       kr: item
     }));
-    dispatch('change')
+    dispatch("change");
   }
 </script>
 
 <div>
   <span class="align-baseline">show:</span>
-  <button class="btn btn-link" on:click={toggleNumbersSino}>numbers sino korean</button>
-  <button class="btn btn-link" on:click={toggleNumbersNative}>numbers native</button>
+  <button class="btn btn-link" on:click={toggleNumbers}>
+    numbers
+  </button>
   <button class="btn btn-link" on:click={toggleWeekdays}>week days</button>
   <button class="btn btn-link" on:click={toggleMonthList}>month</button>
 
   {#if items.length > 0 && !hidden}
-    <div class="card container">
+    <Card>
       <div class="row">
+        {#if items[1].sino}
+          <div class="col text-nowrap text-center">
+            <div>_</div>
+            <h3><span class="badge badge-info">sino</span></h3>
+            <h3><span class="badge badge-info">native</span></h3>
+          </div>
+        {/if}
         {#each items as item}
           <div class="col text-nowrap text-center">
             <div>{item.en}</div>
-            <h3>{item.kr}</h3>
+            {#if item.kr}<h3>{item.kr}</h3>{/if}
+            {#if item.sino}<h3>{item.sino}</h3>{/if}
+            {#if item.native}<h3>{item.native}</h3>{/if}
           </div>
         {/each}
       </div>
-    </div>
+    </Card>
   {/if}
 </div>

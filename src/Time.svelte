@@ -1,8 +1,9 @@
 <script>
   import dayjs from "dayjs";
+  import Card from "./Card.svelte";
   import { time } from "./stores";
   import { HOURS_KR, NUMBERS } from "./constants";
-  import randomInt from './random/randomInt';
+  import randomInt from "./random/randomInt";
 
   let englishTime;
   let koreanTime;
@@ -11,29 +12,23 @@
     englishTime = dayjs(newDate).format("hh:mm a");
 
     const hours = newDate ? HOURS_KR[newDate.getHours() % 12] : "";
-    let minutes = newDate ? NUMBERS[newDate.getMinutes()].sino.replace(' ', '') + "분" : "";
+    let minutes = newDate
+      ? NUMBERS[newDate.getMinutes()].sino.replace(" ", "") + "분"
+      : "";
 
-    if(newDate && newDate.getMinutes() === 30) {
-      minutes = '반'
+    if (newDate && newDate.getMinutes() === 30) {
+      minutes = "반";
     }
 
-    const ampm = newDate && newDate.getHours(0) >= 12 ? '오후' : '오전';
+    const ampm = newDate && newDate.getHours(0) >= 12 ? "오후" : "오전";
 
     koreanTime = `${ampm} ${hours} ${minutes}`;
   });
 </script>
 
 {#if $time}
-  <div class="card reveal-container">
-    <div class="card-body text-center">
-      <h1>{englishTime}</h1>
-
-      <div class="row">
-        <span class="col">
-          <h2 class="reveal">{koreanTime}</h2>
-        </span>
-      </div>
-
-    </div>
-  </div>
+  <Card>
+    <span slot="en">{englishTime}</span>
+    <span slot="kr">{koreanTime}</span>
+  </Card>
 {/if}

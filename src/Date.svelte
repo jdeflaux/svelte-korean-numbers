@@ -1,12 +1,13 @@
 <script>
   import dayjs from "dayjs";
+  import Card from "./Card.svelte";
   import { date } from "./stores";
   import { NUMBERS, MONTH_KR, WEEKDAY_KR } from "./constants";
 
   let englishDate;
   let koreanDate;
 
-  date.subscribe((newDate) => {
+  date.subscribe(newDate => {
     englishDate = dayjs(newDate).format("ddd MMM D");
 
     const monthString = newDate ? MONTH_KR[newDate.getMonth()] : "";
@@ -18,17 +19,8 @@
 </script>
 
 {#if $date}
-  <div class="card reveal-container">
-    <div class="card-body text-center">
-
-      <h1>{englishDate}</h1>
-
-      <div class="row">
-        <span class="col">
-          <h2 class="reveal">{koreanDate}</h2>
-        </span>
-      </div>
-
-    </div>
-  </div>
+  <Card>
+    <span slot="en">{englishDate}</span>
+    <span slot="kr">{koreanDate}</span>
+  </Card>
 {/if}
