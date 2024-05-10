@@ -20,7 +20,7 @@ jobs:
       with:
         node-version: 18
     - run: npm ci
-    - run: npm build
+    - run: npm run build
 
     - name: Deploy to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@4.1.5
