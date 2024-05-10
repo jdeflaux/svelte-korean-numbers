@@ -1,0 +1,14 @@
+{
+  "version": 3,
+  "file": "bundle.css",
+  "sources": [
+    "../../Card.svelte",
+    "../../Number.svelte"
+  ],
+  "sourcesContent": [
+    "<script>\n  export let revealKorean = true;\n</script>\n\n<style>\n  .card {\n    min-height: 200px;\n  }\n\n  .reveal-container .reveal {\n    visibility: hidden;\n  }\n\n  .reveal-container:hover .reveal {\n    visibility: visible;\n  }\n</style>\n\n<div class=\"card reveal-container\">\n  <div class=\"card-body text-center\">\n\n    <h1>\n      {#if revealKorean}\n        <slot name=\"en\" />\n      {/if}\n      {#if !revealKorean}\n        <slot name=\"kr\" />\n        <slot name=\"reveal\"></slot>\n      {/if}\n    </h1>\n\n    <div class=\"row reveal\">\n      <span class=\"col\">\n        <h2>\n        {#if revealKorean}\n          <slot name=\"kr\" />\n        {/if}\n        {#if !revealKorean}\n          <slot name=\"en\" />\n        {/if}\n        </h2>\n      </span>\n    </div>\n\n    <div class=\"reveal\">\n      {#if revealKorean}\n        <slot name=\"reveal\"></slot>\n      {/if}\n    </div>\n\n    <slot></slot>\n\n  </div>\n</div>\n",
+    "<script>\n  import { number } from \"./stores\";\n  import { NUMBERS } from \"./constants\";\n  import Card from \"./Card.svelte\";\n\n  export let revealKorean;\n\n  let id;\n  let native;\n  let sino;\n\n  number.subscribe((value) => {\n    let referenceNumber = NUMBERS.find(x => x && x.id === value) || {};\n    id = referenceNumber.id;\n    native = referenceNumber.native;\n    sino = referenceNumber.sino;\n  });\n</script>\n\n<style>\n  @media (min-width: 768px) {\n    .sino {\n      text-align: right;\n    }\n    .native {\n      text-align: left;\n    }\n  }\n</style>\n\n{#if id}\n  <Card {revealKorean}>\n    <span slot=\"en\">{id}</span>\n    <span class=\"row\" slot=\"reveal\">\n      <span class=\"col-sm sino mb-3\">\n        <h2>{sino}</h2>\n        <span class=\"badge badge-info\">sino</span>\n      </span>\n\n      <span class=\"col-sm native\">\n        <h2>{native}</h2>\n        <span class=\"badge badge-info\">native</span>\n      </span>\n  </Card>\n{/if}\n"
+  ],
+  "names": [],
+  "mappings": "AAKE,KAAK,8BAAC,CAAC,AACL,UAAU,CAAE,KAAK,AACnB,CAAC,AAED,gCAAiB,CAAC,OAAO,eAAC,CAAC,AACzB,UAAU,CAAE,MAAM,AACpB,CAAC,AAED,gCAAiB,MAAM,CAAC,OAAO,eAAC,CAAC,AAC/B,UAAU,CAAE,OAAO,AACrB,CAAC;ACKD,MAAM,AAAC,YAAY,KAAK,CAAC,AAAC,CAAC,AACzB,KAAK,eAAC,CAAC,AACL,UAAU,CAAE,KAAK,AACnB,CAAC,AACD,OAAO,eAAC,CAAC,AACP,UAAU,CAAE,IAAI,AAClB,CAAC,AACH,CAAC"
+}
