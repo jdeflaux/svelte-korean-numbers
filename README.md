@@ -1,7 +1,7 @@
 # svelte-korean-numbers
 Svelte example to learn korean numbers
 
-Live app: [https://learn-korean-numbers.herokuapp.com/](https://jdeflaux.github.io/svelte-korean-numbers/)
+Live app: https://jdeflaux.github.io/svelte-korean-numbers/
 
 ![Build and Heroku deploy](https://github.com/jdeflaux/svelte-korean-numbers/workflows/Build%20and%20Heroku%20deploy/badge.svg)
 
